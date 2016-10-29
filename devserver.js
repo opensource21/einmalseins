@@ -7,6 +7,8 @@ const config = {
   devtool: 'source-map',
 
   entry:  [
+    'webpack-dev-server/client?http://localhost:' + port,
+    'webpack/hot/only-dev-server',
     './src/main.js'
   ],
   output: {
@@ -18,17 +20,21 @@ const config = {
     loaders: [
       {
         test:    /\.jsx?/,
-        loaders: ['babel'],
+        loaders: ['react-hot-loader/webpack', 'babel'],
         include: path.join(__dirname, 'src')
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ]
 };
 
 new WebpackDevServer(webpack(config), {
   publicPath:         config.output.publicPath,
   contentBase:        path.join(__dirname, 'public'),
-  hot:                false,
+  hot:                true,
   historyApiFallback: true
 }).listen(port, 'localhost', (err) => {
   if (err) {
