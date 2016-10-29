@@ -3,11 +3,44 @@
   <head lang="de">
     <meta charset="UTF-8">
     <title>1x1-Trainer</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
 
-  <body>
-    <div id="mountPoint"/>
+  <body class="container-fluid" style="max-width: 640px">
+    <div id="mountPoint">
+    </div>
+    
+    <h2>Konfiguration</h2>
+    <div class="faktorConfig form-inline form-group"> 
+      <label>Faktor A von</label> <input class="form-control" type="number" name="von"> 
+      <label>bis</label> <input class="form-control" type="number" name="bis">.
+    </div>
+    <div class="faktorConfig form-inline form-group"> 
+      <label>Faktor B von</label> <input class="form-control" type="number" name="von"> 
+      <label>bis</label> <input class="form-control" type="number" name="bis">.
+    </div>
+    <div class="faktorConfig form-inline form-group"> 
+      <label>Zeit in Sekunden</label> <input class="form-control" type="number" name="time">.
+    </div>
+    <div class="form-group col-md-12">
+      <button class="btn btn-primary col-md-12">Neue Aufgabe</button>
+    </div>
+    <p/>
+    <div id = "solutions">
+      <div class="challenge form-inline form-group">
+        <label>3 mal 5 =</label> <input class="form-control" type="number" name="eingabe" size="3" autofocus> <label>noch 3 Sekunden</label>
+      </div>
+      <div class="challenge finished wrong bg-info form-inline form-group">
+        <label>3 mal 5 =</label> <input class="form-control"  type="number" name="eingabe" value = "14" disabled> <label>richtige Lösung 15</label>
+      </div>
+      <div class="challenge finished right bg-success form-inline form-group">
+        <label>3 mal 6 =</label> <input class="form-control" type="number" name="eingabe" value = "18" disabled> 
+      </div>
+
+    </div>
+    
   </body>
 
   <script type="text/javascript"
