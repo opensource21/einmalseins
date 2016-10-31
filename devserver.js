@@ -20,7 +20,7 @@ const config = {
     loaders: [
       {
         test:    /\.jsx?/,
-        loaders: ['react-hot-loader/webpack', 'babel'],
+        loaders: ['babel'],
         include: path.join(__dirname, 'src')
       }
     ]
