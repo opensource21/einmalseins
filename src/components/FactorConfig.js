@@ -1,18 +1,22 @@
 import React from 'react';
 
-export default function FactorConfig({factorName, range, onChangeFunc}) {
+export default function FactorConfig({factorName, range, rangeChangeFunc}) {
     return (
     <div className="faktorConfig form-inline form-group"> 
-      <label>Faktor A von</label> 
+      <label>Faktor {factorName} von</label> 
       <input className="form-control" type="number" name="from" value = {range.from}
+            size = "2" min = "2" max = "30" 
             onChange={event => 
-                onChangeFunc(factorName, event.target.name, event.target.value)}/> 
+                rangeChangeFunc(factorName, event.target.name, event.target.value)}></input> 
       <label>bis</label> 
       <input className="form-control" type="number" name="to" value = {range.to}
+            size = "2" min = "2" max = "30"
             onChange={event => 
-                onChangeFunc(factorName, event.target.name, event.target.value)}/>.
+                rangeChangeFunc(factorName, event.target.name, event.target.value)}/>.
     </div>
-    );
+    
+
+    )
 }
 
 FactorConfig.propTypes = {
@@ -20,6 +24,6 @@ FactorConfig.propTypes = {
     range: React.PropTypes.shape({
         from: React.PropTypes.number.isRequired,
         to: React.PropTypes.number.isRequired
-    }),
-    onChangeFunc: React.PropTypes.func.isRequired
+    }).isRequired, 
+    rangeChangeFunc: React.PropTypes.func.isRequired
 }

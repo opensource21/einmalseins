@@ -1,5 +1,5 @@
 import React from 'react';
-import FactorConfig from './FactorConfig'
+import Config from './Config'
 
 function newChallenge(a, b) {
   return {
@@ -15,16 +15,18 @@ export default class Trainer extends React.Component {
         super(props);
         this.state = {
             rangeA: {
-                from: 1,
+                from: 2,
                 to: 20
             },
             rangeB: {
-                from: 1,
+                from: 2,
                 to: 20
             },
+            time: 20,
             challenges: []
         };
         this.factorChange = this.factorChange.bind(this);
+        this.timeChange = this.timeChange.bind(this);
     }
 
     factorChange(factorName, fieldName, value) {
@@ -38,11 +40,16 @@ export default class Trainer extends React.Component {
         });
     }
 
+    timeChange(time) {
+        this.setState({time: parseInt(time)});
+    }
+
     render() {
         return <div>
         <h2>Konfiguration</h2>
-        <FactorConfig factorName="A" range = {this.state.rangeA} onChangeFunc = {this.factorChange} />
-        <FactorConfig factorName='B' range = {this.state.rangeB} onChangeFunc = {this.factorChange} />
+        <Config rangeA = {this.state.rangeA} rangeB = {this.state.rangeB} 
+            time = {this.state.time} timeChangeFunc = {this.timeChange} 
+            rangeChangeFunc = {this.factorChange}/>
         </div>
     }
 }
