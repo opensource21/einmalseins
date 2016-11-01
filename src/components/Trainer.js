@@ -1,6 +1,7 @@
 import React from 'react';
 import Config from './Config'
 import Challenge from './Challenge'
+import random from '../helper/Random'
 
 let challengeId = 0;
 
@@ -53,7 +54,7 @@ export default class Trainer extends React.Component {
     }
 
     start(challenges) {
-        const newChallenges = [newChallenge(3, 5, this.state.time), ...challenges];
+        const newChallenges = [newChallenge(random(this.state.rangeA), random(this.state.rangeB), this.state.time), ...challenges];
         this.setState({challenges: newChallenges});
         clearInterval(this.interval);
         this.interval = setInterval(() => this.countDown(), 1000);
