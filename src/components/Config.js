@@ -8,7 +8,7 @@ export default function Config({rangeA, rangeB, time, rangeChangeFunc, timeChang
             <FactorConfig factorName="A" range = {rangeA} rangeChangeFunc = {rangeChangeFunc} />
             <FactorConfig factorName='B' range = {rangeB} rangeChangeFunc = {rangeChangeFunc} />
             <div className="faktorConfig form-inline form-group"> 
-                <label>Zeit in Sekunden</label> 
+                <label>Zeit die man für die Lösung hat in Sekunden</label> 
                 <input className="form-control" type="number" name="time" 
                         size = "2" min = "5" max = "60"
                         value= {time} onChange = {event => timeChangeFunc(event.target.value)} />.

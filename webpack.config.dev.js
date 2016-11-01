@@ -16,7 +16,7 @@ const devConfig = Object.assign({}, common, {
   ]
 });
 for (var loader of devConfig.module.loaders) {
-  loader.loaders.splice(0, 0, 'react-hot-loader/webpack');
+  loader.loaders.splice(0, 0, 'react-hot');
 }
 
 module.exports = {devConfig, port};
