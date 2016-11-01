@@ -1,2 +1,4 @@
-"jscs.enable": boolean
-"jscs.preset": jquery
+{
+    "jscs.enable": true,
+    "jscs.preset": "jquery"
+}
