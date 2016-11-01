@@ -20,7 +20,7 @@ export default class Challenge extends React.Component {
     renderActive() {
         const input = this.challenge.input||""
         return <div className="challenge form-inline form-group">
-                <label>{this.challenge.factorA} x {this.challenge.factorA}</label> 
+                <label>{this.challenge.factorA} x {this.challenge.factorB}</label> 
                 <input className="form-control" type="number" name="input" size="3" min="0" max = "900"
                     ref="nameInput" value = {input} 
                     onChange = {event => this.props.inputChangeFunc(this.challenge.id, event.target.value)}/>
@@ -28,8 +28,12 @@ export default class Challenge extends React.Component {
             </div>;
     }
     renderPassive() {
+        const input = this.challenge.input||""
+        const solutionText = this.right ? "!" : `richtige Lösung ${this.result}`;
         return <div className="challenge finished wrong bg-info form-inline form-group">
-            <label>3 mal 5 =</label> <input class="form-control"  type="number" name="eingabe" value = "14" disabled/> <label>richtige Lösung 15</label>
+            <label>{this.challenge.factorA} x {this.challenge.factorB}</label> 
+            <input className="form-control"  type="number" name="eingabe"  value = {input} disabled/>
+            <label>{solutionText}</label>
         </div>
     }
     
@@ -40,7 +44,7 @@ export default class Challenge extends React.Component {
 
 Challenge.propTypes = {
     challenge: React.PropTypes.shape( {
-        id: React.PropTypes.string.isRequired,
+        id: React.PropTypes.number.isRequired,
         factorA: React.PropTypes.number.isRequired, 
         factorB: React.PropTypes.number.isRequired,
         time: React.PropTypes.number.isRequired,
