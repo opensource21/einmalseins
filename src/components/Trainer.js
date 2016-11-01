@@ -46,7 +46,7 @@ export default class Trainer extends React.Component {
 
     render() {
         return <div>
-        <h2>Konfiguration</h2>
+        <h2 className="row">Konfiguration</h2>
         <Config rangeA = {this.state.rangeA} rangeB = {this.state.rangeB} 
             time = {this.state.time} timeChangeFunc = {this.timeChange} 
             rangeChangeFunc = {this.factorChange}/>

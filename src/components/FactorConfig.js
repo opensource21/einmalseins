@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function FactorConfig({factorName, range, rangeChangeFunc}) {
     return (
-    <div className="faktorConfig form-inline form-group"> 
+    <div className="faktorConfig row form-inline form-group"> 
       <label>Faktor {factorName} von</label> 
       <input className="form-control" type="number" name="from" value = {range.from}
             size = "2" min = "2" max = "30" 
