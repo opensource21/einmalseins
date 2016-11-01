@@ -1,36 +1,13 @@
 const path = require('path');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const port = 9999
+const devconfig = require('./webpack.config.dev.js');
 
-const config = {
-  devtool: 'source-map',
+const config = devconfig.devConfig;
+const port = devconfig.port;
 
-  entry:  [
-    'webpack-dev-server/client?http://localhost:' + port,
-    'webpack/hot/only-dev-server',
-    './src/main.js'
-  ],
-  output: {
-    path:       path.join(__dirname, 'public/dist'),
-    filename:   '1x1trainer.js',
-    publicPath: '/dist'
-  },
-  module: {
-    loaders: [
-      {
-        test:    /\.jsx?/,
-        loaders: ['babel'],
-        include: path.join(__dirname, 'src')
-      }
-    ]
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
-  ]
-};
-
+console.log("Entry: " + config.entry)
+console.log("Loaders: " + config.module.loaders[0].loaders)
 new WebpackDevServer(webpack(config), {
   publicPath:         config.output.publicPath,
   contentBase:        path.join(__dirname, 'public'),
