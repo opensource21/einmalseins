@@ -27,7 +27,7 @@ export default class Trainer extends React.Component {
                 from: 2,
                 to: 20
             },
-            time: 5,
+            time: 15,
             challenges: []
         };
         this.factorChange = this.factorChange.bind(this);
@@ -67,7 +67,7 @@ export default class Trainer extends React.Component {
                 return c;
             } else {
                 totalChangeTime += c.time - 1;;
-                return { ...c, time : c.time - 1 , id : challengeId++ }
+                return { ...c, time : c.time - 1, id : challengeId++}
             }});
         if (totalChangeTime === 0) {
             clearInterval(this.interval);
@@ -84,7 +84,7 @@ export default class Trainer extends React.Component {
     }
 
     render() {
-        const list = this.state.challenges.map((challenge) => console.log(challenge));
+        // const list = this.state.challenges.map((challenge) => console.log(challenge));
         const activeChallenge = this.state.challenges.some(challenge => challenge.time > 0);
         return <div>
             <h2 className="row">Konfiguration</h2>
@@ -95,6 +95,7 @@ export default class Trainer extends React.Component {
                 <button className="btn btn-primary col-md-12 {activeChallenge ? 'disabled' : ''}" disabled={activeChallenge} 
                     onClick={activeChallenge ? null : () => this.start([])}>Start</button>
             </div>
+            <p/> 
             {this.state.challenges.map((challenge) => <Challenge key = {challenge.id} challenge = {challenge} inputChangeFunc = {this.inputChange} />)}
         </div>
         

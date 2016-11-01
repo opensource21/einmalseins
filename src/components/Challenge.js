@@ -18,7 +18,7 @@ export default class Challenge extends React.Component {
     }
 
     renderActive() {
-        const input = this.challenge.input||""
+        const input = this.challenge.input
         return <div className="challenge form-inline form-group">
                 <label>{this.challenge.factorA} x {this.challenge.factorB}</label> 
                 <input className="form-control" type="number" name="input" size="3" min="0" max = "900"
@@ -28,13 +28,12 @@ export default class Challenge extends React.Component {
             </div>;
     }
     renderPassive() {
-        const input = this.challenge.input||""
-        const solutionText = this.right ? "!" : `richtige Lösung ${this.result}`;
-        return <div className="challenge finished wrong bg-info form-inline form-group">
-            <label>{this.challenge.factorA} x {this.challenge.factorB}</label> 
-            <input className="form-control"  type="number" name="eingabe"  value = {input} disabled/>
-            <label>{solutionText}</label>
-        </div>
+        const input = this.challenge.input||"0"
+        if (this.right) {
+            return <div className = "right bg-success">Richtig, <b>{this.challenge.factorA}</b> x <b>{this.challenge.factorB}</b> = <b>{this.result}</b></div> 
+        } else {
+            return <div className = "wrong bg-info">Nicht ganz, <b>{this.challenge.factorA}</b> x <b>{this.challenge.factorB}</b> = <b>{this.result}</b> und nicht <b>{input}</b></div>
+        }
     }
     
     render() {
