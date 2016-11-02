@@ -20,14 +20,14 @@ export default class Trainer extends React.Component {
         super(props);
         this.state = {
             rangeA: {
-                from: 2,
-                to: 20
+                from: 13,
+                to: 14
             },
             rangeB: {
-                from: 2,
+                from: 11,
                 to: 20
             },
-            time: 15,
+            time: 20,
             challenges: []
         };
 
@@ -89,6 +89,10 @@ export default class Trainer extends React.Component {
         const activeChallenge = this.state.challenges.some(challenge => challenge.time > 0);
 
         return <div>
+            {activeChallenge?<div className="row"><label>A: {this.state.rangeA.from} - {this.state.rangeA.to} und 
+                    B: {this.state.rangeB.from} - {this.state.rangeB.to}  Zeit: {this.state.time}</label>
+                    </div>:
+            <div>
             <h2 className="row">Konfiguration</h2>
             <Config rangeA = {this.state.rangeA} rangeB = {this.state.rangeB} 
                 time = {this.state.time} timeChangeFunc = {this.timeChange} 
@@ -97,7 +101,7 @@ export default class Trainer extends React.Component {
                 <button className="btn btn-primary col-md-12 {activeChallenge ? 'disabled' : ''}" disabled={activeChallenge} 
                     onClick={activeChallenge ? null : () => this.start([])}>Start</button>
             </div>
-            <p/> 
+            <p/></div>} 
             {this.state.challenges.map((challenge) => <Challenge key={challenge.id} challenge = {challenge} inputChangeFunc = {this.inputChange} />)}
         </div>
         
