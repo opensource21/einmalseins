@@ -7,7 +7,7 @@ let challengeId = 0;
 
 function newChallenge(a, b, time) {
   return {
-    id:    challengeId++,
+    id: challengeId++,
     factorA: a,
     factorB: b,
     input: null,
@@ -30,12 +30,12 @@ export default class Trainer extends React.Component {
             time: 15,
             challenges: []
         };
+
         this.factorChange = this.factorChange.bind(this);
         this.timeChange = this.timeChange.bind(this);
         this.start = this.start.bind(this);
         this.inputChange = this.inputChange.bind(this);
         this.countDown = this.countDown.bind(this);
-        this.state.challenges = [];
     }
 
     factorChange(factorName, fieldName, value) {
@@ -66,9 +66,10 @@ export default class Trainer extends React.Component {
             if (c.time === 0) {
                 return c;
             } else {
-                totalChangeTime += c.time - 1;;
-                return { ...c, time : c.time - 1, id : challengeId++}
+                totalChangeTime += c.time - 1;
+                return { ...c, time : c.time - 1}
             }});
+
         if (totalChangeTime === 0) {
             clearInterval(this.interval);
             if (newChallenges[0].input > 0 && newChallenges.filter(c => c.factorA * c.factorB !== c.input).length < 3) {
@@ -79,13 +80,14 @@ export default class Trainer extends React.Component {
     }
 
     inputChange(id, value) {
-        const newChallenges = this.state.challenges.map((c)=>c.id !== id ? c : { ...c, input : parseInt(value), id : challengeId++});
+        const newChallenges = this.state.challenges.map((c)=>c.id !== id ? c : { ...c, input : parseInt(value)});
         this.setState({challenges: newChallenges});
     }
 
     render() {
         // const list = this.state.challenges.map((challenge) => console.log(challenge));
         const activeChallenge = this.state.challenges.some(challenge => challenge.time > 0);
+
         return <div>
             <h2 className="row">Konfiguration</h2>
             <Config rangeA = {this.state.rangeA} rangeB = {this.state.rangeB} 
@@ -96,7 +98,7 @@ export default class Trainer extends React.Component {
                     onClick={activeChallenge ? null : () => this.start([])}>Start</button>
             </div>
             <p/> 
-            {this.state.challenges.map((challenge) => <Challenge key = {challenge.id} challenge = {challenge} inputChangeFunc = {this.inputChange} />)}
+            {this.state.challenges.map((challenge) => <Challenge key={challenge.id} challenge = {challenge} inputChangeFunc = {this.inputChange} />)}
         </div>
         
     }
