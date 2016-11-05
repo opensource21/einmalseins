@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
 export default class Challenge extends React.Component {
 
@@ -58,4 +58,4 @@ Challenge.propTypes = {
         input: React.PropTypes.number
     }).isRequired,
     inputChangeFunc: React.PropTypes.func.isRequired
-}
+};

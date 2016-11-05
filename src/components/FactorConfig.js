@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export default function FactorConfig({factorName, range, rangeChangeFunc}) {
     return (
@@ -13,7 +13,7 @@ export default function FactorConfig({factorName, range, rangeChangeFunc}) {
             size = "2" min = "2" max = "30"
             onChange={event => 
                 rangeChangeFunc(factorName, event.target.name, event.target.value)}/>.
-    </div>)
+    </div>);
 }
 
 FactorConfig.propTypes = {

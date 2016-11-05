@@ -1,12 +1,12 @@
-import React from 'react';
-import FactorConfig from './FactorConfig'
+import React from "react";
+import FactorConfig from "./FactorConfig"
 
 
 export default function Config({rangeA, rangeB, time, rangeChangeFunc, timeChangeFunc}) {
     return (
         <div id="configuration">
             <FactorConfig factorName="A" range = {rangeA} rangeChangeFunc = {rangeChangeFunc} />
-            <FactorConfig factorName='B' range = {rangeB} rangeChangeFunc = {rangeChangeFunc} />
+            <FactorConfig factorName="B" range = {rangeB} rangeChangeFunc = {rangeChangeFunc} />
             <div className="faktorConfig row form-inline form-group"> 
                 <label>Zeit für die Lösung</label> 
                 <input className="form-control" type="number" name="time" 

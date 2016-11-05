@@ -1,18 +1,18 @@
-import React from 'react';
-import Config from './Config'
-import Challenge from './Challenge'
-import random from '../helper/Random'
+import React from "react";
+import Config from "./Config";
+import Challenge from "./Challenge";
+import random from "../helper/Random";
 
 let challengeId = 0;
 
 function newChallenge(a, b, time) {
-  return {
-    id: challengeId++,
-    factorA: a,
-    factorB: b,
-    input: null,
-    time: time
-  };
+    return {
+        id: challengeId++,
+        factorA: a,
+        factorB: b,
+        input: null,
+        time: time
+    };
 }
 
 export default class Trainer extends React.Component {
@@ -98,12 +98,11 @@ export default class Trainer extends React.Component {
                 time = {this.state.time} timeChangeFunc = {this.timeChange} 
                 rangeChangeFunc = {this.factorChange}/>
             <div className="form-group row col-md-12">
-                <button className="btn btn-primary col-md-12 {activeChallenge ? 'disabled' : ''}" disabled={activeChallenge} 
+                <button className="btn btn-primary col-md-12 {activeChallenge ? "disabled" : ""}" disabled={activeChallenge} 
                     onClick={activeChallenge ? null : () => this.start([])}>Start</button>
             </div>
             <p/></div>} 
             {this.state.challenges.map((challenge) => <Challenge key={challenge.id} challenge = {challenge} inputChangeFunc = {this.inputChange} />)}
-        </div>
-        
+        </div>;
     }
 }

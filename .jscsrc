@@ -1,4 +1,8 @@
 {
-    "jscs.enable": true,
-    "jscs.preset": "jquery"
+	"enable": true,
+	"preset": "google",
+	"maximumLineLength": null,
+	"jsDoc": null,
+	"validateIndentation": 4,
+	"validateQuoteMarks": "\""
 }
