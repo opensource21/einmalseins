@@ -1,7 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import Trainer from "./components/Trainer";
+import Trainer from './components/Trainer';
 
 function Page() {
     return <div>
@@ -10,4 +10,4 @@ function Page() {
     </div>;
 }
 
-ReactDOM.render(<Page />, document.getElementById("mountPoint"));
+ReactDOM.render(<Page />, document.getElementById('mountPoint'));

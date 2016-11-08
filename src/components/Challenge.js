@@ -1,5 +1,5 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class Challenge extends React.Component {
 
@@ -26,7 +26,7 @@ export default class Challenge extends React.Component {
     }
 
     renderPassive() {
-        const challenge = this.props.challenge; 
+        const challenge = this.props.challenge;
         const result = challenge.factorA * challenge.factorB;
         const input = challenge.input || 0;
 

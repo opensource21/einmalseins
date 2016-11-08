@@ -1,8 +1,11 @@
 {
-	"enable": true,
+	//"enable": false,
 	"preset": "google",
 	"maximumLineLength": null,
 	"jsDoc": null,
 	"validateIndentation": 4,
-	"validateQuoteMarks": "\""
+	"validateQuoteMarks": false,
+	"requireSpaceBetweenArguments": false,
+	"validateParameterSeparator": null,
+	"requireSemicolons": false //wird durch eslint erledigt.
 }

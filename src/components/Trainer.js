@@ -1,7 +1,7 @@
-import React from "react";
-import Config from "./Config";
-import Challenge from "./Challenge";
-import random from "../helper/Random";
+import React from 'react';
+import Config from './Config';
+import Challenge from './Challenge';
+import random from '../helper/Random';
 
 let challengeId = 0;
 
@@ -39,8 +39,8 @@ export default class Trainer extends React.Component {
     }
 
     factorChange(factorName, fieldName, value) {
-        const completeFactorName = `range${factorName}`
-        const currentRange = this.state[completeFactorName]; 
+        const completeFactorName = `range${factorName}`;
+        const currentRange = this.state[completeFactorName];
         const newRange = {...currentRange};
         //Set the new value
         newRange[fieldName] = parseInt(value, 10);
@@ -62,12 +62,12 @@ export default class Trainer extends React.Component {
 
     countDown() {
         let totalChangeTime = 0;
-        const newChallenges = this.state.challenges.map((c)=>{
+        const newChallenges = this.state.challenges.map((c)=> {
             if (c.time === 0) {
                 return c;
             } else {
                 totalChangeTime += c.time - 1;
-                return { ...c, time : c.time - 1}
+                return {...c, time: c.time - 1};
             }});
 
         if (totalChangeTime === 0) {
@@ -75,12 +75,12 @@ export default class Trainer extends React.Component {
             if (newChallenges[0].input > 0 && newChallenges.filter(c => c.factorA * c.factorB !== c.input).length < 3) {
                 return this.start(newChallenges);
             }
-        } 
+        }
         this.setState({challenges: newChallenges});
     }
 
     inputChange(id, value) {
-        const newChallenges = this.state.challenges.map((c)=>c.id !== id ? c : { ...c, input : parseInt(value)});
+        const newChallenges = this.state.challenges.map((c)=>c.id !== id ? c : {...c, input: parseInt(value)});
         this.setState({challenges: newChallenges});
     }
 
@@ -89,16 +89,16 @@ export default class Trainer extends React.Component {
         const activeChallenge = this.state.challenges.some(challenge => challenge.time > 0);
 
         return <div>
-            {activeChallenge?<div className="row"><label>A: {this.state.rangeA.from} - {this.state.rangeA.to} und 
+            {activeChallenge ? <div className="row"><label>A: {this.state.rangeA.from} - {this.state.rangeA.to} und 
                     B: {this.state.rangeB.from} - {this.state.rangeB.to}  Zeit: {this.state.time}</label>
-                    </div>:
+                    </div> :
             <div>
             <h2 className="row">Konfiguration</h2>
-            <Config rangeA = {this.state.rangeA} rangeB = {this.state.rangeB} 
-                time = {this.state.time} timeChangeFunc = {this.timeChange} 
+            <Config rangeA = {this.state.rangeA} rangeB = {this.state.rangeB}
+                time = {this.state.time} timeChangeFunc = {this.timeChange}
                 rangeChangeFunc = {this.factorChange}/>
             <div className="form-group row col-md-12">
-                <button className="btn btn-primary col-md-12 {activeChallenge ? "disabled" : ""}" disabled={activeChallenge} 
+                <button className="btn btn-primary col-md-12 {activeChallenge ? 'disabled' : ''}" disabled={activeChallenge}
                     onClick={activeChallenge ? null : () => this.start([])}>Start</button>
             </div>
             <p/></div>} 

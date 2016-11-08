@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function FactorConfig({factorName, range, rangeChangeFunc}) {
     return (
@@ -7,7 +7,7 @@ export default function FactorConfig({factorName, range, rangeChangeFunc}) {
       <input className="form-control" type="number" name="from" value = {range.from}
             size = "2" min = "2" max = "30" 
             onChange={event => 
-                rangeChangeFunc(factorName, event.target.name, event.target.value)}></input> 
+                rangeChangeFunc(factorName, event.target.name, event.target.value)}/> 
       <label>bis</label> 
       <input className="form-control" type="number" name="to" value = {range.to}
             size = "2" min = "2" max = "30"
@@ -23,4 +23,4 @@ FactorConfig.propTypes = {
         to: React.PropTypes.number.isRequired
     }).isRequired, 
     rangeChangeFunc: React.PropTypes.func.isRequired
-}
+};

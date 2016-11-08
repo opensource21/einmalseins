@@ -1,5 +1,5 @@
 {
-  "name": "EinMalEinsTrainer",
+  "name": "einmal-eins-trainer",
   "version": "1.0.0",
   "description": "Programm zum Üben des 1x1.",
   "main": "main.js",
@@ -12,11 +12,15 @@
   },
   "devDependencies": {
     "babel-core": "^6.18.0",
+    "babel-eslint": "^7.1.0",
     "babel-loader": "^6.2.7",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-3": "^6.17.0",
     "cross-env": "^3.1.3",
+    "eslint": "^3.9.1",
+    "eslint-loader": "^1.6.1",
+    "eslint-plugin-react": "^6.6.0",
     "react-hot-loader": "^1.3.0",
     "rimraf": "^2.5.4",
     "webpack": "^1.13.3",

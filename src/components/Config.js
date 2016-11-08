@@ -1,6 +1,5 @@
-import React from "react";
-import FactorConfig from "./FactorConfig"
-
+import React from 'react';
+import FactorConfig from './FactorConfig';
 
 export default function Config({rangeA, rangeB, time, rangeChangeFunc, timeChangeFunc}) {
     return (
@@ -9,11 +8,10 @@ export default function Config({rangeA, rangeB, time, rangeChangeFunc, timeChang
             <FactorConfig factorName="B" range = {rangeB} rangeChangeFunc = {rangeChangeFunc} />
             <div className="faktorConfig row form-inline form-group"> 
                 <label>Zeit für die Lösung</label> 
-                <input className="form-control" type="number" name="time" 
+                <input className="form-control" type="number" name="time"
                         size = "2" min = "5" max = "60"
                         value= {time} onChange = {event => timeChangeFunc(event.target.value)} />
                 <label>Sekunden</label>
-
             </div>
         </div>
     );
@@ -31,4 +29,4 @@ Config.propTypes = {
     time: React.PropTypes.number.isRequired,
     rangeChangeFunc: React.PropTypes.func.isRequired,
     timeChangeFunc: React.PropTypes.func.isRequired
-}
+};
