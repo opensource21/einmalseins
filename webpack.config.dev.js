@@ -3,7 +3,6 @@ const common = require('./webpack.config.common');
 
 const port = 9999;
 
-
 const devConfig = Object.assign({}, common, {
   entry:   [
     'webpack-dev-server/client?http://localhost:' + port,

@@ -13,10 +13,10 @@ new WebpackDevServer(webpack(config), {
     contentBase:        path.join(__dirname, 'public'),
     hot:                true,
     historyApiFallback: true
-}).listen(port, 'localhost', (err) => {
+  }).listen(port, 'localhost', (err) => {
     if (err) {
-        return console.log(err);
+      return console.log(err);
     }
 
     console.log('Listening at localhost:' + port);
-});
+  });

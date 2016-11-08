@@ -3,7 +3,7 @@
 	"preset": "google",
 	"maximumLineLength": null,
 	"jsDoc": null,
-	"validateIndentation": 4,
+	"validateIndentation": 2,
 	"validateQuoteMarks": false,
 	"requireSpaceBetweenArguments": false,
 	"validateParameterSeparator": null,
