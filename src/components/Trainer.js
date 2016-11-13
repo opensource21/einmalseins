@@ -101,7 +101,8 @@ export default class Trainer extends React.Component {
 
     return <div>
             <Statistic challenges = {this.state.challenges}
-              areasize= {(this.state.rangeA.to - this.state.rangeA.from) * (this.state.rangeB.to - this.state.rangeB.from)}/>
+              areasize= {(1 + this.state.rangeA.to - this.state.rangeA.from) *
+                (1 + this.state.rangeB.to - this.state.rangeB.from)}/>
             {activeChallenge ?
               <div className="row text-center"><label>A: {this.state.rangeA.from} - {this.state.rangeA.to} und 
                     B: {this.state.rangeB.from} - {this.state.rangeB.to}  Zeit: {this.state.time}</label>
