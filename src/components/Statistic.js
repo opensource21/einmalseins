@@ -6,7 +6,7 @@ export default function Statistic({challenges, areasize}) {
     return <div/>;
   }
   const stat = challenges.reduce((current, challenge) => {
-    if (isCorrect(challenge)) {
+    if (challenge.time === 0 && isCorrect(challenge)) {
       current.correct++;
     }
     current.total++;
@@ -15,7 +15,7 @@ export default function Statistic({challenges, areasize}) {
   const rate = stat.correct / areasize;
   const rateClass = getRateClass(rate);
 
-  return <h2 className={`row text-center col-md-12 ${rateClass}`}>{stat.correct}/{stat.total}</h2>;
+  return <h2 className={`row text-center col-md-12 ${rateClass}`}>{stat.correct} von {stat.total} sind richtig.</h2>;
 }
 
 function getRateClass(rate) {
@@ -31,6 +31,6 @@ function getRateClass(rate) {
 }
 
 Statistic.propTypes = {
-  challenges: React.PropTypes.array,
-  areasize: React.PropTypes.number
+  challenges: React.PropTypes.array.isRequired,
+  areasize: React.PropTypes.number.isRequired
 };
