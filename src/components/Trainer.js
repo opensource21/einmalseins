@@ -20,16 +20,19 @@ function newChallenge(a, b, time) {
 export default class Trainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-        rangeA: {
+    const rangeA = JSON.parse(localStorage.getItem('rangeA')) || {
             from: 13,
             to: 14
-          },
-        rangeB: {
+          };
+    const rangeB = JSON.parse(localStorage.getItem('rangeB')) || {
             from: 11,
             to: 20
-          },
-        time: 20,
+          };
+    const time = JSON.parse(localStorage.getItem('time')) || 20;
+    this.state = {
+        rangeA: rangeA,
+        rangeB: rangeB,
+        time: time,
         challenges: []
       };
 
@@ -56,6 +59,9 @@ export default class Trainer extends React.Component {
   }
 
   start(challenges) {
+    localStorage.setItem('rangeA', JSON.stringify(this.state.rangeA));
+    localStorage.setItem('rangeB', JSON.stringify(this.state.rangeB));
+    localStorage.setItem('time', JSON.stringify(this.state.time));
     const newChallenges = [newChallenge(random(this.state.rangeA), random(this.state.rangeB), this.state.time), ...challenges];
     this.setState({challenges: newChallenges});
     clearInterval(this.interval);
