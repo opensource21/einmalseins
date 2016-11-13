@@ -1,7 +1,9 @@
 import React from 'react';
 import Config from './Config';
 import Challenge from './Challenge';
+import Statistic from './Statistic';
 import random from '../helper/Random';
+import {isNotCorrect} from '../helper/ChallengeHelper';
 
 let challengeId = 0;
 
@@ -72,8 +74,11 @@ export default class Trainer extends React.Component {
 
     if (totalChangeTime === 0) {
       clearInterval(this.interval);
-      if (newChallenges[0].input > 0 && newChallenges.filter(c => c.factorA * c.factorB !== c.input).length < 3) {
+      if (newChallenges[0].input > 0 && newChallenges.filter(isNotCorrect).length < 3) {
         return this.start(newChallenges);
+      } else if (!newChallenges[0].input > 0) {
+        // Remove the last try if no input happend
+        newChallenges.shift();
       }
     }
     this.setState({challenges: newChallenges});
@@ -89,19 +94,24 @@ export default class Trainer extends React.Component {
     const activeChallenge = this.state.challenges.some(challenge => challenge.time > 0);
 
     return <div>
-            {activeChallenge ? <div className="row"><label>A: {this.state.rangeA.from} - {this.state.rangeA.to} und 
+            <Statistic challenges = {this.state.challenges}
+              areaSize= {(this.state.rangeA.from - this.state.rangeA.to) * (this.state.rangeB.from - this.state.rangeB.to)}/>
+            {activeChallenge ?
+              <div className="row text-center"><label>A: {this.state.rangeA.from} - {this.state.rangeA.to} und 
                     B: {this.state.rangeB.from} - {this.state.rangeB.to}  Zeit: {this.state.time}</label>
-                    </div> :
-        <div>
-            <h2 className="row">Konfiguration</h2>
-            <Config rangeA = {this.state.rangeA} rangeB = {this.state.rangeB}
-            time = {this.state.time} timeChangeFunc = {this.timeChange}
-            rangeChangeFunc = {this.factorChange}/>
-            <div className="form-group row col-md-12">
+              </div>
+              :
+              <div>
+                <h2 className="row">Konfiguration</h2>
+                <Config rangeA = {this.state.rangeA} rangeB = {this.state.rangeB}
+                  time = {this.state.time} timeChangeFunc = {this.timeChange}
+                  rangeChangeFunc = {this.factorChange}/>
+                <div className="form-group row col-md-12">
                 <button className="btn btn-primary col-md-12 {activeChallenge ? 'disabled' : ''}" disabled={activeChallenge}
-                onClick={activeChallenge ? null : () => this.start([])}>Start</button>
-            </div>
-            <p/></div>} 
+                  onClick={activeChallenge ? null : () => this.start([])}>Start</button>
+                </div>
+                <p/></div>
+            }
             {this.state.challenges.map((challenge) => <Challenge key={challenge.id} challenge = {challenge} inputChangeFunc = {this.inputChange} />)}
         </div>;
   }
