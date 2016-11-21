@@ -15,19 +15,19 @@ export default class Challenge extends React.Component {
 
   renderActive() {
     const challenge = this.props.challenge;
-
     return <div className="challenge form-inline form-group">
                 <label>{challenge.factorA} x {challenge.factorB}</label> 
                 <input className="form-control" type="number" name="input" size="3" min="0" max = "900"
                 ref="nameInput"
                 onChange = {event => this.props.inputChangeFunc(challenge.id, event.target.value)}/>
                 <label>noch {this.props.challenge.time} Sekunden</label>
+                <label>{challenge.hints.join(', ')}</label>
             </div>;
   }
 
   renderPassive() {
     const challenge = this.props.challenge;
-    const result = challenge.factorA * challenge.factorB;
+    const result = challenge.result;
     const input = challenge.input || 0;
 
     if (result === input) {

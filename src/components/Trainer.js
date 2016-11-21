@@ -2,18 +2,27 @@ import React from 'react';
 import Config from './Config';
 import Challenge from './Challenge';
 import Statistic from './Statistic';
-import random from '../helper/Random';
+import {random, shuffle} from '../helper/Random';
 import {isNotCorrect} from '../helper/ChallengeHelper';
 
 let challengeId = 0;
 
-function newChallenge(a, b, time) {
+function newChallenge(a, b, time, hints = false) {
+  const delta1 = random({from: -a, to: a});
+  const delta2 = random({from: -b, to: b});
+  const result = a * b;
+  const values = hints ? [result + delta1, result + delta2, result] : [];
+  if (hints) {
+    shuffle(values);
+  }
   return {
       id: challengeId++,
       factorA: a,
       factorB: b,
       input: null,
-      time: time
+      time: time,
+      result: result,
+      hints: values
     };
 }
 
@@ -33,7 +42,8 @@ export default class Trainer extends React.Component {
         rangeA: rangeA,
         rangeB: rangeB,
         time: time,
-        challenges: []
+        challenges: [],
+        showHint: false
       };
 
     this.factorChange = this.factorChange.bind(this);
@@ -41,6 +51,7 @@ export default class Trainer extends React.Component {
     this.start = this.start.bind(this);
     this.inputChange = this.inputChange.bind(this);
     this.countDown = this.countDown.bind(this);
+    this.setHint = this.setHint.bind(this);
   }
 
   factorChange(factorName, fieldName, value) {
@@ -58,11 +69,15 @@ export default class Trainer extends React.Component {
     this.setState({time: parseInt(time)});
   }
 
+  setHint(showHint) {
+    this.setState({showHint: showHint});
+  }
+
   start(challenges) {
     localStorage.setItem('rangeA', JSON.stringify(this.state.rangeA));
     localStorage.setItem('rangeB', JSON.stringify(this.state.rangeB));
     localStorage.setItem('time', JSON.stringify(this.state.time));
-    const newChallenges = [newChallenge(random(this.state.rangeA), random(this.state.rangeB), this.state.time), ...challenges];
+    const newChallenges = [newChallenge(random(this.state.rangeA), random(this.state.rangeB), this.state.time, this.state.showHint), ...challenges];
     this.setState({challenges: newChallenges});
     clearInterval(this.interval);
     this.interval = setInterval(() => this.countDown(), 1000);
@@ -112,7 +127,8 @@ export default class Trainer extends React.Component {
                 <h2 className="row">Konfiguration</h2>
                 <Config rangeA = {this.state.rangeA} rangeB = {this.state.rangeB}
                   time = {this.state.time} timeChangeFunc = {this.timeChange}
-                  rangeChangeFunc = {this.factorChange}/>
+                  rangeChangeFunc = {this.factorChange}
+                  showHint={this.state.showHint} setHint={this.setHint}/>
                 <div className="form-group row col-md-12">
                 <button className="btn btn-primary col-md-12 {activeChallenge ? 'disabled' : ''}" disabled={activeChallenge}
                   onClick={activeChallenge ? null : () => this.start([])}>Start</button>

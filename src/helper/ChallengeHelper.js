@@ -1,5 +1,5 @@
 export function isCorrect(challenge) {
-  return challenge.factorA * challenge.factorB === challenge.input;
+  return challenge.result === challenge.input;
 }
 
 export function isNotCorrect(challenge) {
